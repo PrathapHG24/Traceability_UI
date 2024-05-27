@@ -1,0 +1,51 @@
+<div fxLayout="column" fxFlex="100">
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-around center" fxLayoutGap="10px" class="main-div">
+        <div fxLayout="column" fxFlex="45">
+            <div fxFlex>
+                <img src="../../../../assets/img/product.png" alt="product" id="product">
+            </div>
+        </div>
+        <div fxLayout="column" fxFlex="45">
+            <mat-card fxFlex>
+                <mat-toolbar color="primary">Traceability</mat-toolbar>
+                <form fxLayoutAlign="stretch" [formGroup]="loginForm" fxLayout="column" class="login-form">
+                    <mat-form-field appearance="fill">
+                        <mat-label>User name</mat-label>
+                        <input matInput placeholder="User name" formControlName="username">
+                        <mat-error *ngIf="isSubmitted && formControls.username.errors">
+                            Username required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" placeholder="Password" formControlName="password">
+                        <mat-error *ngIf="isSubmitted && formControls.password.errors">
+                            Password required
+                        </mat-error>
+                    </mat-form-field>
+                    <notifier-container></notifier-container>
+                    <button mat-raised-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
+                    <!-- <mat-form-field floatLabel="never" class="form-element">
+                        <input type="text" matInput placeholder="Username" formControlName="username">
+                        <mat-error *ngIf="formGroup.controls['username'].invalid">
+                            {{Username required}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field floatLabel="never" class="form-element">
+                        <input type="password" matInput placeholder="Password" formControlName="password">
+                        <mat-error *ngIf="!formGroup.controls['password'].valid">
+                            {{Password required}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="form-element">
+                        <button mat-raised-button color="primary" type="submit" class="button"
+                            [disabled]="!formGroup.valid">Submit Form</button>
+                    </div> -->
+                </form> 
+            </mat-card>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,377 @@
+<div fxLayout="column" fxFlex="100" class="main-data-log">
+
+
+    <div class="page-bottom"  fxLayout="row" fxLayoutGap="3%">
+       <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-around none" fxLayoutGap="5%">
+   
+            
+            <div fxLayout="column" fxLayoutGap="2%" fxFlex="80">
+               <div fxLayout="row"  fxLayoutGap="1%" fxLayoutAlign="space-around center" *ngIf="machineUpdatedData">
+                  
+                     <span *ngIf="fromOilHoleCheckingComponent"        class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1010 - OIL HOLE CHECKING MACHINE</h4></strong></span>  
+                     <span *ngIf="fromBallPressingComponent"           class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1020A - BALL PRESS MACHINE</h4></strong></span>  
+                     <span *ngIf="fromSocketPressingComponent"         class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1020B - SOCKET PRESS MACHINE</h4></strong></span>  
+                     <span *ngIf="fromScrewAndNutAssemblyComponent"    class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1030 - SCREW & NUT ASSEMBLY MACHINE</h4></strong></span>  
+                     <span *ngIf="fromPipePluAssemblyComponent"        class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1040A - PIPE PLUG VALVE ASSEMBLY MACHINE</h4></strong></span>  
+                     <span *ngIf="fromInsertValveAssemblyComponent"    class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1040B - INSERT VALVE ASSEMBLY MACHINE</h4></strong></span>  
+                     <span *ngIf="fromBallOverHeightMeasureComponent"  class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1040C - BALL OVER HEIGHT CHECK MACHINE</h4></strong></span>  
+                     <span *ngIf="fromThreadedPlugAssemblyComponent"   class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1040D - THREAD PLUG ASSEMBLY MACHINE</h4></strong></span>  
+                     <span *ngIf="fromOcvPlungerAssemblyComponent"     class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1050 - OCV ASSEMBLY MACHINE</h4></strong></span>  
+                     <span *ngIf="fromOcvPlungerAssemblyAComponent"    class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1050A - OCV ASSEMBLY MACHINE A</h4></strong></span>  
+                     <span *ngIf="fromMasterPistonAssemblyComponent"   class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1060 - PIN PRESS ASSEMBLY MACHINE</h4></strong></span>  
+                     <span *ngIf="fromMasterPistonAssemblyAComponent"  class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1060A - PIN PRESS ASSEMBLY MACHINE A</h4></strong></span>  
+                     <span *ngIf="fromFunctionalTestRigComponent"      class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1070 - FUNCTIONAL TEST RIG</h4></strong></span>
+                     <span *ngIf="fromFunctionalTestRigAComponent"     class="border text-center-heading-row1"><strong><h4    class="h3-botm">OP1070A - FUNCTIONAL TEST RIG A</h4></strong></span>  
+
+                
+                        <span class="border text-center-row2"><strong><h4 class="h3-botm">Current Shift</h4></strong></span>                 
+                        <span class="border text-center-row3" *ngIf="machineUpdatedData.shift == 1"><strong><h4 class="h3-botm">A</h4></strong></span>
+                        <span class="border text-center-row3" *ngIf="machineUpdatedData.shift == 2"><strong><h4 class="h3-botm">B</h4></strong></span>
+                        <span class="border text-center-row3" *ngIf="machineUpdatedData.shift == 3"><strong><h4 class="h3-botm">C</h4></strong></span>
+                        <span class="border text-center-row3" *ngIf="machineUpdatedData.shift !== 1 && machineUpdatedData.shift !== 2 && machineUpdatedData.shift !== 3"><strong><h4 class="h3-botm">NA</h4></strong></span>            
+
+                        <span *ngIf="!fromFunctionalTestRigComponent" class="border text-center-row2"><strong><h4 class="h3-botm">QR Code NO</h4></strong></span>
+                        <span *ngIf="fromFunctionalTestRigComponent" class="border text-center-row2"><strong><h4 class="h3-botm">SFL Serial NO</h4></strong></span> 
+
+                        <span *ngIf="!fromFunctionalTestRigComponent" class="border text-center-row3"><strong><h4 class="h3-botm">{{machineUpdatedData.productId}}</h4></strong></span>
+                        <span *ngIf="fromFunctionalTestRigComponent && machineUpdatedData.sflPartId" class="border text-center-row3"><strong><h4 class="h3-botm">{{machineUpdatedData.sflPartId}}</h4></strong></span>
+
+                        <span *ngIf="!fromFunctionalTestRigAComponent" class="border text-center-row2"><strong><h4 class="h3-botm">QR Code NO</h4></strong></span>
+                        <span *ngIf="fromFunctionalTestRigAComponent" class="border text-center-row2"><strong><h4 class="h3-botm">SFL Serial NO</h4></strong></span> 
+
+                        <span *ngIf="!fromFunctionalTestRigAComponent" class="border text-center-row3"><strong><h4 class="h3-botm">{{machineUpdatedData.productId}}</h4></strong></span>
+                        <span *ngIf="fromFunctionalTestRigAComponent && machineUpdatedData.sflPartId" class="border text-center-row3"><strong><h4 class="h3-botm">{{machineUpdatedData.sflPartId}}</h4></strong></span>
+
+                        <input [ngClass]="machineUpdatedData.status == 1 ? 'success-status-btn' : machineUpdatedData.status == 3 ? 'na-status-btn' : 'failure-status-btn'"  value="{{machineUpdatedData.status == 1 ? 'OK' : machineUpdatedData.status == 3 ? 'NA' : 'NOT OK'}}" type="button" >
+                        <mat-icon (click)="backtomainpage()" class="back-to-main">reply</mat-icon>
+               </div>
+           </div>
+   
+       </div>
+    </div>
+
+   <div  class="page-bottom" fxLayout="row" fxLayoutGap="1%">
+      <!-- first column  -->
+       <div fxLayoutGap="2%" fxLayout="column" *ngIf="machineUpdatedData">
+          <mat-card>
+         <div fxLayout="row" fxLayoutAlign="space-around center"> 
+            <h4 class="h3-bot"><strong>Production Count</strong> 
+               /Current Shift  (Qty)
+               </h4>
+               <span  class="border text-center-box-yellow"><strong><h5 class="h5-size">{{machineUpdatedData.totalProductionCount}}</h5></strong></span>                     
+
+         </div>
+         <hr>
+         <div div fxLayout="row" fxLayoutAlign="space-around center">
+            <h4 class="h3-bot"><strong>OK Parts </strong> 
+               /Current Shift (Qty)              
+               </h4>
+               <span  class="border text-center-box-green"><strong><h5 class="h5-size">{{machineUpdatedData.okParts}}</h5></strong></span>
+         </div>
+         <hr>
+         <div div fxLayout="row" fxLayoutAlign="space-around center">
+            <h4 class="h3-bot"><strong>Reject Parts </strong> 
+               /Current Shift (Qty)               
+               </h4>
+               <span  class="border text-center-box-red"><strong><h5 class="h5-size">{{machineUpdatedData.notOkParts}}</h5></strong></span>                     
+         </div>
+      </mat-card>
+       </div>
+       <!-- second column  -->
+       <div  fxLayoutGap="2%" fxLayout="column" *ngIf="machineUpdatedData">
+         <mat-card class="mat-size">
+        <div fxLayout="row" fxLayoutAlign="space-around center"> 
+           <h4 class="h3-bot"><strong>Machine START Time</strong> 
+              /Current Shift
+              </h4>
+              <span  class="border text-center-box-white"><strong><h5 class="h5-size">{{machineUpdatedData.startTime}}</h5></strong></span>                     
+
+        </div>
+        <hr>
+        <div div fxLayout="row" fxLayoutAlign="space-around center">
+           <h4 class="h3-bot"><strong>Machine END Time</strong> 
+              /Current Shift            
+              </h4>
+              <span  class="border text-center-box-white"><strong><h5 class="h5-size">{{machineUpdatedData.endTime}}</h5></strong></span>                     
+
+        </div>
+        <hr>
+        <div div fxLayout="row" fxLayoutAlign="space-around center">
+           <h4 class="h3-bot"><strong>CYCLE Time</strong> 
+            /Current Part
+              </h4>
+              <span  class="border text-center-box-white"><strong><h5 class="h5-size">{{machineUpdatedData.cycleTime}}</h5></strong></span>                     
+
+        </div>
+     </mat-card>
+      </div>
+       <!-- thrid column  -->
+       <div  fxLayoutGap="5%" fxLayoutAlign="" fxLayout="column" >
+
+         <mat-card  fxLayoutGap="1%">
+        <div fxLayout="row"  fxLayoutAlign="space-around center"> 
+       <span  class="border part-report-row1"><strong><h5    class="h5-size">Part Report Generate</h5></strong></span>
+      </div>
+
+      <div fxLayout="row"  fxLayoutAlign="space-around center" >
+         <div>
+            <input type="text" placeholder="Part ID" [formControl]="partId">
+         </div>
+         <!-- <span  class="border part-report-row2"><strong><h5 class="h5-size">D109210001</h5></strong></span>             -->
+         <div>
+            <button class="btn btn-primary download-part" (click)="downloadPartReport()">Submit</button>
+         </div>
+      </div>
+      
+     </mat-card>
+
+     <mat-card  class="mat-size-date-pick">
+         <div fxLayout="row" fxLayoutAlign="space-around center">
+            <span *ngIf="fromOilHoleCheckingComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP-1010 Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromBallPressingComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1020A Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromSocketPressingComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1020B Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromScrewAndNutAssemblyComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1030 Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromPipePluAssemblyComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1040A Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromInsertValveAssemblyComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1040B Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromBallOverHeightMeasureComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1040C Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromThreadedPlugAssemblyComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1040D Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromOcvPlungerAssemblyComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1050 Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromOcvPlungerAssemblyAComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1050A Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromMasterPistonAssemblyComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1060 Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromMasterPistonAssemblyAComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1060A Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromFunctionalTestRigComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1070 Report Generate</h5>
+               </strong></span>
+            <span *ngIf="fromFunctionalTestRigAComponent" class="border part-report-row1"><strong>
+                  <h5 class="h5-size">OP1070A Report Generate</h5>
+               </strong></span>
+         </div>
+
+           <div class="date-size" fxLayout="row" fxLayoutGap="1px"  >
+           <form  [formGroup] = "form">
+            <mat-form-field  appearance="fill">
+               <mat-label>Enter a date range</mat-label>
+               <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
+                 <input matStartDate placeholder="Start date" formControlName="start">
+                 <input matEndDate placeholder="End date" formControlName= "end">
+               </mat-date-range-input>
+               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+               <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+         </form>
+         <button class="btn-date-picker btn btn-primary download-part"(click)="onSubmit()">Submit</button>
+
+         </div>
+   </mat-card>
+      </div>
+       <!-- fourth column  -->
+       <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters">
+
+       <button class="btn-primary" (click)="autoRefresh()"> Auto Refresh</button>
+       
+     
+       <!-- <mat-form-field class="select-option" appearance="fill">
+      
+         <mat-select [(value)]="selectedval" (selectionChange)="changeClient($event.value)" >
+           <mat-option  *ngFor="let option of values" [value]="option.value">{{ option.viewValue }} </mat-option>
+         </mat-select>
+       </mat-form-field> -->
+       </div>
+       <!-- fifth column -->
+       <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters">
+       <button class="btn-primary" (click)="manualRefresh()">Manual Refresh</button>
+       </div>
+       <!-- sixth column  -->
+       <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters">
+         <button class="btn-primary" (click)="export_part_report_excel()">Download Report</button>
+      </div>
+      <!-- sixth column  -->
+      <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters select-option">
+         <mat-form-field appearance="fill">
+            <mat-select [(value)]="selectedval" (selectionChange)="changeClient($event.value)" >
+              <mat-option  *ngFor="let option of values" [value]="option.value">{{ option.viewValue }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <!-- <div fxLayout="column"  fxLayoutGap="15%" >
+         <div fxLayout="row">
+         <span  class="border prev-op-ver"><strong><h4  class="h3-botm">Previous Operation Verified</h4></strong></span>  
+
+        </div> -->
+        <!-- <div fxLayout="row">
+         <span (click)="export_part_report_excel()"class="border part-list-report"><strong><h4   class="h3-botm">Download Report</h4></strong></span>  
+
+        </div> -->
+        <!-- <div fxLayout="row">
+         <span  class="border part-list-report"><strong><h4  class="h3-botm">Part Trace</h4></strong></span>  
+
+        </div>
+        <span (click)="export_part_report_excel()"class="border part-list-report"><strong><h4   class="h3-botm">Download Report</h4></strong></span>  
+      </div> -->
+      
+   </div>
+
+
+<div *ngIf="fromOilHoleCheckingComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m1columnDefs"
+   (rowClicked)="onRowClicked($event)"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromBallPressingComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m2columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromSocketPressingComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m3columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromScrewAndNutAssemblyComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m4columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromPipePluAssemblyComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m5columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromInsertValveAssemblyComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m6columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromBallOverHeightMeasureComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m7columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromThreadedPlugAssemblyComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m8columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromOcvPlungerAssemblyComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m9columnDefs"
+   (rowClicked)="onRowClicked($event)"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromOcvPlungerAssemblyAComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m13columnDefs"
+   (rowClicked)="onRowClicked($event)"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromMasterPistonAssemblyComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m10columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromMasterPistonAssemblyAComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m14columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromFunctionalTestRigComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m11columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+<div *ngIf="fromFunctionalTestRigAComponent">
+   <ag-grid-angular
+   style="width: 100%; height: 500px; "
+   class="ag-theme-alpine"
+   [rowData]="rowData | async "
+   [columnDefs]="m12columnDefs"
+   (gridReady)="onGridReady($event)">
+   </ag-grid-angular>
+</div>
+</div>
+   
+
+
+
+
+   
+   
+   
+   

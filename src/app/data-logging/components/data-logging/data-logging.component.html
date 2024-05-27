@@ -1,0 +1,2403 @@
+<div fxLayout="column" class="main-data-log">
+  <div
+    fxLayout="row"
+    fxFlex
+    fxLayoutAlign="center start"
+    fxLayoutGap="10%"
+    class="m-2"
+  >
+    <h1>
+      <strong>Traceability For Exhaust Lever Assembly Line-2(ISD/ISB)</strong>
+    </h1>
+    <div>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="goBackToHome()"
+      >
+        Main Screen
+      </button>
+    </div>
+  </div>
+
+  <div class="current-shift-container">
+    <mat-card fxLayoutGap="2%" fxLayout="row">
+      <div fxLayout="column" fxFlex="100">
+        <div
+          fxLayout="row"
+          fxFlex="100"
+          fxLayoutAlign="center none"
+          *ngIf="machineData"
+        >
+          <h1>
+            <strong
+              >Current Shift -
+              {{
+                machineData.machine11.currentShift == 1
+                  ? "(A)"
+                  : machineData.machine11.currentShift == 2
+                  ? "(B)"
+                  : machineData.machine11.currentShift == 3
+                  ? "(C)"
+                  : "(NA)"
+              }}</strong
+            >
+          </h1>
+        </div>
+        <!-- <hr>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift == 1">
+          <h1><strong>A</strong></h1>
+        </div>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift == 2">
+          <h1><strong>B</strong></h1>
+        </div>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift == 3">
+          <h1><strong>C</strong></h1>
+        </div>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift !== 1 && machineData.machine11.currentShift !== 2 && machineData.machine11.currentShift !== 3">
+          <h1><strong>NA</strong></h1>
+        </div> -->
+      </div>
+    </mat-card>
+  </div>
+  <div class="page-bottom" fxLayout="row" fxLayoutGap="3%" *ngIf="machineData">
+    <!-- first column   -->
+    <div
+      fxFlex="50"
+      fxLayout="column"
+      fxLayoutAlign="space-around none"
+      fxLayoutGap="5%"
+    >
+      <!-- first head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%" fxFlex="80">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('oilHoleCheck')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1010 - OIL HOLE CHECKING MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine1.productId }}"
+          />
+        </div>
+
+        <!-- second row  -->
+        <div fxLayout="row" fxFlex="100">
+          <div fxLayout="column" fxFlex="40">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="OCV Hole Status"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine1.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="40">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="BAP Hole Status"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine1.process2PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <!-- thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="40">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="Pipe Plug Hole Status"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine1.process3PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="40">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="Thread Plug Hole Status"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine1.process4PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="20">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine1.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine1.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine1.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine1.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- second head -->
+      <mat-card fxLayout="column" fxFlex="80" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('ballPressing')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1020A - BALL PRESS MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine2.productId }}"
+          />
+        </div>
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX ID GAUGE VALUE(MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL ID A GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL ID B GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process1Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth row  -->
+        <!-- <div fxLayout="row" fxLayoutGap="1%" fxFlex="100" >
+
+          <div fxLayout="column" fxFlex="50" >
+              <div  fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+                  <h5 fxFlex="70"><strong>MAX ID GAUGE VALUE (MM)</strong></h5>
+                  <input fxFlex="30" class="text-center adjust-text-height" type="text" disabled placeholder="40">
+          
+              </div>
+            </div> 
+            <div fxLayout="column" fxFlex="50" >
+              <div  fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+                  <h5 fxFlex="70"><strong>ACTUAL ID B GAUGE VALUE (MM)</strong></h5>
+                  <input fxFlex="30" class="text-center adjust-text-height" type="text" disabled placeholder="900">
+          
+              </div>
+            </div> 
+   
+   
+            </div>           -->
+        <!-- Fifth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN LOAD VALUE(KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process2Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process2Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- sixth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine2.process2Parameter3 }}"
+              />
+            </div>
+          </div>
+          <!-- <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN DISPLACEMENT VALUE(KG)</strong></h5>
+              <input fxFlex="30" class="text-center adjust-text-height" type="text" disabled
+                placeholder="{{machineData.machine2.process2Parameter4}}">
+            </div>
+          </div> -->
+        </div>
+        <!-- seventh row  -->
+        <!-- <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX DISPLACEMENT VALUE (KG)</strong></h5>
+              <input fxFlex="30" class="text-center adjust-text-height" type="text" disabled
+                placeholder="{{machineData.machine2.process2Parameter5}}">
+
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL DISPLACEMENT VALUE (KG)</strong></h5>
+              <input fxFlex="30" class="text-center adjust-text-height" type="text" disabled
+                placeholder="{{machineData.machine2.process2Parameter6}}">
+
+            </div>
+          </div>
+
+
+        </div> -->
+
+        <!-- Eighth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="45">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="ID GAUGE STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine2.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="45">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder=" BALL PRESS STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine2.process2PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="10">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine2.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine2.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine2.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine2.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+
+        <!-- end  row  -->
+      </mat-card>
+
+      <!-- thrid head  -->
+      <mat-card fxLayout="column" fxFlex="80" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('socketProcessing')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1020B - SOCKET PRESS MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine3.productId }}"
+          />
+        </div>
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="SOCKET PRESS STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine3.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine3.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine3.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine3.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine3.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- fourth head -->
+      <mat-card fxLayout="column" fxFlex="80" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('screwAndNutAssembly')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1030 - SCREW & NUT ASSEMBLY MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine4.productId }}"
+          />
+        </div>
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="45">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="PRE-SCREWIONG / SCREWING STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine4.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="45">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="NUT TIGHTENING STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine4.process2PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="10">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine4.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine4.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine4.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine4.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- fifth head  -->
+      <mat-card fxLayout="column" fxFlex="80" fxLayoutGap="2%">
+        <!-- first row  -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('pipePlugAssembly')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1040A - PIPE PLUG VALVE ASSEMBLY MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine5.productId }}"
+          />
+        </div>
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="0%">
+              <h5 fxFlex="70"><strong>TARGET TORQUE (NM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine5.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="%">
+              <h5 fxFlex="70"><strong>ACTUAL TORQUE (NM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine5.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="PIPE PLUG ASMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine5.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine5.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine5.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine5.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine5.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- sixth head  -->
+      <mat-card fxLayout="column" fxFlex="80" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('insertValveAssembly')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1040B - INSERT VALVE ASSEMBLY MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine6.productId }}"
+          />
+        </div>
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN ID GAUGE BORE DIA (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX ID GAUGE BORE DIA (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL ID GAUGE BORE DIA (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="ID GAUGE STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine6.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Fourth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN LOAD INSERT PRESS LOAD (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process2Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX LOAD INSERT PRESS VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process2Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Fifth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL LOAD INSERT VALUE PRESS VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process2Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN DISPLACEMENT INSERT VALUE VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process2Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Sixth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX DISPLACEMENT INSERT VALUE VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process2Parameter5 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL DISPLACEMENT INSERT VALUE VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine6.process2Parameter6 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Seventh row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="INSERT PRESS STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine6.process2PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine6.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine6.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine6.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine6.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Seventh head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('ballOverHeightMeasure')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1040C - BALL OVER HEIGHT CHECK MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine7.productId }}"
+          />
+        </div>
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN BALL OVER HEIGHT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine7.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX BALL OVER HEIGHT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine7.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL BALL OVER HEIGHT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine7.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="BALL OVER HEIGHT CHECK STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine7.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+        <!-- fourth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="100">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine7.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine7.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine7.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine7.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Eighth head   -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('threadedPlugAssembly')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1040D - THREAD PLUG ASSEMBLY MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine8.productId }}"
+          />
+        </div>
+        <!-- Second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="0%">
+              <h5 fxFlex="70"><strong>MINIMUM TORQUE (NM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine8.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="%">
+              <h5 fxFlex="70"><strong>MAXIMUM TORQUE (NM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine8.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="0%">
+              <h5 fxFlex="70"><strong>ACTUAL TORQUE (NM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine8.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="%">
+              <h5 fxFlex="70"><strong>ACTUAL AMGLE</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine8.process1Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="90">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="BALL / SPRING/ O-RING / THREAD PLUG ASMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine8.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="10">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine8.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine8.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine8.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine8.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- first column  end -->
+
+    <!-- second column -->
+    <div
+      fxFlex="50"
+      fxLayout="column"
+      fxLayoutAlign="start none"
+      fxLayoutGap="5%"
+    >
+      <!-- First head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('ocvPlungerAssembly')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1050 - OCV ASSEMBLY MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine9.productId }}"
+          />
+        </div>
+
+        <!-- Second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN OCV ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine9.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX OCV ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine9.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine9.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN BAP ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine9.process1Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX BAP ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine9.process1Parameter5 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL BAP ID GAUGE VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine9.process1Parameter6 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="ID GAUGE STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine9.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="OCV / BAP ASMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine9.process2PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Sixth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="SPRING ASMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine9.process3PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="RETAINER ASBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine9.process4PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Seventh row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="CIRCLIP ASSEMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine9.process5PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine9.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine9.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{ machineData.machine9.status == 1 ? 'OK' : 'NOT OK' }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine9.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Second head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('ocvPlungerAssemblyA')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1050A - OCV ASSEMBLY MACHINE A "
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine13.productId }}"
+          />
+        </div>
+
+        <!-- Second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN OCV ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine13.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX OCV ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine13.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine13.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN BAP ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine13.process1Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX BAP ID GAUGE VALUE (MM)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine13.process1Parameter5 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL BAP ID GAUGE VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine13.process1Parameter6 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="ID GAUGE STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine13.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="OCV / BAP ASMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine13.process2PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Sixth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="SPRING ASMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine13.process3PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="RETAINER ASBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine13.process4PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Seventh row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="CIRCLIP ASSEMBLY STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine13.process5PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine13.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine13.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{
+                  machineData.machine13.status == 1 ? 'OK' : 'NOT OK'
+                }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine13.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Third head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('masterPistonAndErlAssm')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1060 - PIN PRESS ASSEMBLY MACHINE"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine10.productId }}"
+          />
+        </div>
+        <!-- Second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN PIN PRESS LOAD VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine10.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX PIN PRESS LOAD VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine10.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL PIN PRESS LOAD VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine10.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN PIN DISPLACEMENT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine10.process1Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX PIN DISPLACEMENT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine10.process1Parameter5 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL PIN DISPLACEMENT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine10.process1Parameter6 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="PIN PRESS STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine10.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine10.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine10.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{
+                  machineData.machine10.status == 1 ? 'OK' : 'NOT OK'
+                }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine10.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Fourth head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('masterPistonAndErlAssmA')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1060A - PIN PRESS ASSEMBLY MACHINE A"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="QR Code NO"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine14.productId }}"
+          />
+        </div>
+        <!-- Second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN PIN PRESS LOAD VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine14.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX PIN PRESS LOAD VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine14.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Thrid row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL PIN PRESS LOAD VALUE (KG)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine14.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MIN PIN DISPLACEMENT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine14.process1Parameter4 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>MAX PIN DISPLACEMENT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine14.process1Parameter5 }}"
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70">
+                <strong>ACTUAL PIN DISPLACEMENT VALUE (MM)</strong>
+              </h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine14.process1Parameter6 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="PIN PRESS STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine14.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="50">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine14.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine14.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{
+                  machineData.machine14.status == 1 ? 'OK' : 'NOT OK'
+                }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine14.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Fifth head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('functionalTestRig')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1070 - FUNCTIONAL TEST RIG"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="Serial No"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine11.sflPartId }}"
+          />
+        </div>
+
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="50">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine11.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Third row -->
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine11.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth row  -->
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine11.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <!-- <div fxLayout="column" fxFlex="50">
+                    <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+                      <input class="text-center-heading" type="text" disabled placeholder="MASTER PISTON CHECK STATUS">
+                      <input id="check-box-style" type="checkbox" [checked]="machineData.machine11.process2PassFail == 1 ? true : false">
+        
+                    </div>
+                  </div> -->
+        </div>
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="90">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="FUNCTION TEST STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine11.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="10">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine11.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine11.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{
+                  machineData.machine11.status == 1 ? 'OK' : 'NOT OK'
+                }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine11.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+
+      <!-- Sixth head  -->
+      <mat-card fxLayout="column" fxLayoutGap="2%">
+        <!-- first row -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="1%"
+          fxLayoutAlign="space-around center"
+          (click)="openDesiredComponentDataLogging('functionalTestRigA')"
+        >
+          <input
+            class="text-center-heading-row1"
+            type="text"
+            disabled
+            placeholder="OP1070A - FUNCTIONAL TEST RIG A"
+          />
+
+          <input
+            class="text-center-row2"
+            type="text"
+            disabled
+            placeholder="Serial No"
+          />
+
+          <input
+            class="text-center"
+            type="text"
+            disabled
+            placeholder="{{ machineData.machine19.sflPartId }}"
+          />
+        </div>
+
+        <!-- second row  -->
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MIN LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine19.process1Parameter1 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Third row -->
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>MAX LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine19.process1Parameter2 }}"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- forth row  -->
+        <div fxLayout="row" fxLayoutGap="2%" fxFlex="100">
+          <div fxLayout="column" fxFlex="50">
+            <div fxLayout="row" fxFlex="100" fxLayoutGap="1%">
+              <h5 fxFlex="70"><strong>ACTUAL LOAD VALUE (KG)</strong></h5>
+              <input
+                fxFlex="30"
+                class="text-center adjust-text-height"
+                type="text"
+                disabled
+                placeholder="{{ machineData.machine19.process1Parameter3 }}"
+              />
+            </div>
+          </div>
+          <!-- <div fxLayout="column" fxFlex="50">
+                    <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+                      <input class="text-center-heading" type="text" disabled placeholder="MASTER PISTON CHECK STATUS">
+                      <input id="check-box-style" type="checkbox" [checked]="machineData.machine19.process2PassFail == 1 ? true : false">
+        
+                    </div>
+                  </div> -->
+        </div>
+        <div fxLayout="row" fxLayoutGap="1%" fxFlex="100">
+          <div fxLayout="column" fxFlex="90">
+            <div fxLayout="row" fxLayoutGap="1%" fxLayoutAlign="center center">
+              <input
+                class="text-center-heading"
+                type="text"
+                disabled
+                placeholder="FUNCTION TEST STATUS"
+              />
+              <input
+                id="check-box-style"
+                type="checkbox"
+                [checked]="
+                  machineData.machine19.process1PassFail == 1 ? true : false
+                "
+              />
+            </div>
+          </div>
+
+          <div fxLayout="column" fxFlex="10">
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine19.status !== 3"
+            >
+              <input
+                [ngClass]="
+                  machineData.machine19.status == 1
+                    ? 'ok-button'
+                    : 'not-ok-button'
+                "
+                type="button"
+                value="{{
+                  machineData.machine19.status == 1 ? 'OK' : 'NOT OK'
+                }}"
+              />
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutGap="1%"
+              fxLayoutAlign="end center"
+              *ngIf="machineData.machine19.status == 3"
+            >
+              <input class="na-button" type="button" value="NA" />
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <!-- second column end -->
+
+    <!-- thrid column -->
+
+    <!-- <div fxFlex="20" fxLayout="column" fxLayoutAlign="start none" fxLayoutGap="10%"> -->
+
+    <!-- <mat-card fxLayoutGap="2%" fxLayout="row">
+        <div fxLayout="column" fxFlex="100">
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+            <h1><strong>Current Shift</strong> </h1>
+          </div>
+          <hr>
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift == 1">
+            <h1><strong>A</strong></h1>
+          </div>
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift == 2">
+            <h1><strong>B</strong></h1>
+          </div>
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift == 3">
+            <h1><strong>C</strong></h1>
+          </div>
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="current-shift" *ngIf="machineData.machine11.currentShift !== 1 && machineData.machine11.currentShift !== 2 && machineData.machine11.currentShift !== 3">
+            <h1><strong>NA</strong></h1>
+          </div>
+        </div>
+
+      </mat-card> -->
+
+    <!-- <mat-card fxLayoutGap="2%" fxLayout="row">
+        <div fxLayout="column" fxLayoutGap="5%" fxFlex="100">
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+            <mat-card-title>Total Production</mat-card-title>
+          </div>
+
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="total-production">
+            <h1><strong>{{machineData.machine11.totalProduction}}</strong></h1>
+          </div>
+        </div>
+
+      </mat-card> -->
+
+    <!-- <mat-card fxLayoutGap="2%" fxLayout="row">
+        <div fxLayout="column" fxLayoutGap="5%" fxFlex="100">
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+            <mat-card-title>OK Parts</mat-card-title>
+          </div>
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="ok-parts">
+            <h1><strong>{{machineData.machine11.okParts}}</strong></h1>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card fxLayoutGap="2%" fxLayout="row">
+        <div fxLayout="column" fxLayoutGap="5%" fxFlex="100">
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+            <mat-card-title>NOT OK Parts</mat-card-title>
+          </div>
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="not-ok-parts">
+            <h1><strong>{{machineData.machine11.notOkParts}}</strong></h1>
+          </div>
+        </div>
+
+      </mat-card> -->
+
+    <!-- </div> -->
+    <!-- thrid column  end -->
+  </div>
+</div>

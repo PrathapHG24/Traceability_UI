@@ -1,0 +1,21 @@
+<button mat-icon-button class="close-button" (click)="onNoClick()">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+  
+  <!-- <h1 mat-dialog-title><strong></strong></h1> -->
+  <div mat-dialog-content>
+    <div fxLayout="column" fxLayoutGap="1%" fxFlex="100" class="error-screen">
+      <div fxFlex="40" fxLayoutAlign="center center">
+        <img src="../../../../assets/img/error-icon.png" class="oversize" />
+      </div>
+      <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
+        <p><strong>{{data.reason}}</strong></p>
+        <p><strong>{{data.errorTime}} ({{data.errorDate}})</strong></p>
+        <!-- <p><strong>OPC Server lost connection!!</strong></p>
+        <p><strong>00:00:00(22-12-2022) </strong> </p> -->
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">CLOSE</button>
+  </div>

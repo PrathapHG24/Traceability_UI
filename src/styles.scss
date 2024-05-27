@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "~angular-notifier/styles";
+html, body { height: 100%; }
+body{
+    background-color:#2CD4D9 !important;
+}
+
+.ag-header-group-cell-label {
+    justify-content: center !important;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

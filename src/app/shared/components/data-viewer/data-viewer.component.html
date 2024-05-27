@@ -1,0 +1,29 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+  
+  <h1 mat-dialog-title><strong>{{data.machine_name}}</strong></h1>
+  <div mat-dialog-content>
+      <p><strong>DATE :- </strong>{{data.date}}</p>
+      <p><strong>TIME :- </strong>{{data.time}}</p>
+      <p><strong>COMPONENT BARCODE :- </strong>{{data.component_barcode}}</p>
+      <p><strong>SHIFT :- </strong>{{data.shift}}</p>
+      <p><strong>PRODUCTION STATUS :- </strong>{{data.production_status}}</p>
+      <p><strong>MIN OCV ID GAUGE VALUE (MM) :- </strong>{{data.min_ocv_id_gauge_value}}</p>
+      <p><strong>MAX OCV ID GAUGE VALUE (MM) :- </strong>{{data.max_ocv_id_gauge_value}}</p>
+      <p><strong>ACTUAL OCV ID GAUGE VALUE (MM) :- </strong>{{data.actual_ocv_id_gauge_value}}</p>
+      <p><strong>MIN BAP ID GAUGE VALUE (MM) :- </strong>{{data.min_bap_id_gauge_value}}</p>
+      <p><strong>MAX BAP ID GAUGE VALUE (MM) :- </strong>{{data.max_bap_id_gauge_value}}</p>
+      <p><strong>ACTUAL BAP ID GAUGE VALUE (MM) :- </strong>{{data.actual_bap_id_gauge_value}}</p>
+      <p><strong>ID GAUGE STATUS :- </strong>{{data.id_gauge_status}}</p>
+      <p><strong>OCV / BAP ASSEMBLY STATUS :- </strong>{{data.ocv_and_bap_asmbly_status}}</p>
+      <p><strong>SPRING ASSEMBLY STATUS :- </strong>{{data.spring_asmbly_status}}</p>
+      <p><strong>RETAINER ASSEMBLY STATUS :- </strong>{{data.retainer_asmbly_status}}</p>
+      <p><strong>CIRCLIP ASSEMBLY STATUS :- </strong>{{data.circlip_asmbly_status}}</p>
+      <p><strong>CYCLE TIME :- </strong>{{data.cycleTime}}</p>
+      <p><strong>OPERATOR NAME :- </strong>{{data.operator_name}}</p>
+      <p><strong>FAIL REASON :- </strong>{{data.fail_reason}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">CLOSE</button>
+  </div>

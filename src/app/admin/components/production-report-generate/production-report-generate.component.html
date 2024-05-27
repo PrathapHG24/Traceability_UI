@@ -1,0 +1,18 @@
+<div fxLayout="column" fxFlex="100" class="main-data-log"> 
+    <div fxLayout="row"fxLayoutAlign="space-around center" > <h2><strong>Production Report Genterate</strong></h2></div>
+    <div class="home-btn">
+        <button type="button" class="btn btn-outline-primary m-2" (click)="goBackToAdminMenu()">
+        Admin Menu
+      </button>
+      <button type="button" class="btn btn-outline-primary m-2" (click)="export_user_production_excel()">
+        User Production Report
+      </button>
+    </div>
+    <ag-grid-angular
+    style="width: 100%; height: 500px; "
+    class="ag-theme-alpine"
+    [rowData]="rowData | async "
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+</div>

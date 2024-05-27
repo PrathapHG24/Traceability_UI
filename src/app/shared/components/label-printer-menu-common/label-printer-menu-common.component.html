@@ -1,0 +1,233 @@
+<div fxLayout="column" class="main-div">
+
+ 
+    <div fxLayout="row" fxFlex fxLayoutAlign="center start" class="m-2" >
+        <h1 *ngIf="fromPrintLabelComponent"><strong>Current Shift Print Label List</strong></h1> 
+        <h1 *ngIf="fromIssuedLabelComponent"><strong>Issued Label List</strong></h1> 
+        <h1 *ngIf="fromMissingLabelComponent"><strong>Missing Label List</strong></h1> 
+        <h1 *ngIf="fromDiscardLabelCompponent"><strong>Discard Label List</strong></h1> 
+      </div>
+
+      <div class="home-btn">
+        <button type="button" class="btn btn-outline-primary" (click)="goBackToHome()">
+        Main Screen
+      </button>
+       </div>
+      <div flexLayout="row" fxLayoutAlign="center start" class="discard-btn" *ngIf="fromDiscardLabelCompponent">
+        <button type="button" class="btn btn-outline-warning">Scan part No. <br>
+          To  Discard the Label
+          </button>
+      </div>
+      <br>
+      <mat-divider  *ngIf="fromDiscardLabelCompponent"></mat-divider>
+      <br>
+       <div class="form-group row" *ngIf="fromPrintLabelComponent">
+
+        <div class="col-xs-2">
+            <label for="ex1" class="form-label">Select QTY</label>   
+            <div fxLayout="row" fxLayoutGap="2%" >
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>QTY</mat-label>    
+                        <input matInput  maxlength="5" placeholder="15">          
+                      </mat-form-field>             
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="fromIssuedLabelComponent" >
+        <button class="btn btn-outline-primary" mat-button [matMenuTriggerFor]="belowMenu">Select Date</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item>17/07/2021</button>
+          <button mat-menu-item>18/07/2021</button>
+          <button mat-menu-item>19/07/2021</button>
+          <button mat-menu-item>17/07/2021</button>
+          <button mat-menu-item>18/07/2021</button>
+          <button mat-menu-item>19/07/2021</button>
+          <button mat-menu-item>17/07/2021</button>
+          <button mat-menu-item>18/07/2021</button>
+          <button mat-menu-item>19/07/2021</button>
+          <button mat-menu-item>17/07/2021</button>
+          <button mat-menu-item>18/07/2021</button>
+          <button mat-menu-item>19/07/2021</button>
+
+        </mat-menu>
+    </div>
+ 
+    <div *ngIf="fromMissingLabelComponent" >
+      <button class="btn btn-outline-primary" mat-button [matMenuTriggerFor]="belowMenu">Select Date</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item>17/07/2021</button>
+        <button mat-menu-item>18/07/2021</button>
+        <button mat-menu-item>19/07/2021</button>
+        <button mat-menu-item>17/07/2021</button>
+        <button mat-menu-item>18/07/2021</button>
+        <button mat-menu-item>19/07/2021</button>
+        <button mat-menu-item>17/07/2021</button>
+        <button mat-menu-item>18/07/2021</button>
+        <button mat-menu-item>19/07/2021</button>
+        <button mat-menu-item>17/07/2021</button>
+        <button mat-menu-item>18/07/2021</button>
+        <button mat-menu-item>19/07/2021</button>
+
+      </mat-menu>
+  </div>
+
+  <div *ngIf="fromDiscardLabelCompponent">
+    <button class="btn btn-outline-primary" mat-button [matMenuTriggerFor]="belowMenu">Select Date</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item>17/07/2021</button>
+      <button mat-menu-item>18/07/2021</button>
+      <button mat-menu-item>19/07/2021</button>
+      <button mat-menu-item>17/07/2021</button>
+      <button mat-menu-item>18/07/2021</button>
+      <button mat-menu-item>19/07/2021</button>
+      <button mat-menu-item>17/07/2021</button>
+      <button mat-menu-item>18/07/2021</button>
+      <button mat-menu-item>19/07/2021</button>
+      <button mat-menu-item>17/07/2021</button>
+      <button mat-menu-item>18/07/2021</button>
+      <button mat-menu-item>19/07/2021</button>
+
+    </mat-menu>
+</div>
+
+
+          <div class=" row print-btn" >
+            <div *ngIf="fromPrintLabelComponent"> <button type="button" class="btn btn-outline-primary" (click)="export_print_label_excel()">
+              Print
+            </button></div>
+            <div *ngIf="fromIssuedLabelComponent"> <button type="button" class="btn btn-outline-primary" (click)="export_issued_label_excel()">
+             Issued Label
+            </button></div>
+            <div *ngIf="fromMissingLabelComponent"> <button type="button" class="btn btn-outline-primary" (click)="export_missing_label_excel()">
+              Missing Label
+             </button></div>
+             <div  *ngIf="fromDiscardLabelCompponent"> <button type="button" class="btn btn-outline-primary" (click)="export_discard_label_excel()">
+              Discard Label List
+             </button></div>
+
+          </div> 
+          <div *ngIf="fromPrintLabelComponent">
+            <h4 class="mat-display-1">Following Part No. are Printing </h4>
+          </div>
+          <div *ngIf="fromIssuedLabelComponent">
+            <h4 class="mat-display-1">Following Part No. are Issued </h4>
+          </div>
+    
+          <div *ngIf="fromMissingLabelComponent">
+            <h4 class="mat-display-1">Following Part No. are Missing Label </h4>
+        </div> 
+        <div  *ngIf="fromDiscardLabelCompponent">
+          <h4 class="mat-display-1">Following Part No. are Discard Label </h4>
+        </div>
+
+   <!-- print Label Part start -->
+          <div class="mb-3"fxLayout="column" fxLayoutAlign="space-evenly start" *ngIf="fromPrintLabelComponent">
+            <!-- <h4 class="mat-subheading-1" id="print_label-list" *ngIf="fromPrintLabelComponent">{{user.name.title}}  {{user.name.first}} {{user.name.last}}</h4> -->
+            <table class=" table table-striped table-hover" id="print_label-list">
+              <thead class="table-light">
+                <tr *ngIf="fromPrintLabelComponent">
+                  <th>Part No.</th>          
+                </tr></thead>
+                <tbody>
+                  <tr  *ngFor="let user of data | paginate: {id:'listing_pagination',
+             itemsPerPage: 10,
+             currentPage: page,
+             totalItems: totalRecords}">          
+                        <td *ngIf="fromPrintLabelComponent">{{user.name.title}} {{user.name.first}}</td>        
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        <!-- print label part end  -->
+
+        <!-- Isuued label Table  -->
+        <div class="mb-3"fxLayout="column" fxLayoutAlign="space-evenly start" *ngIf="fromIssuedLabelComponent">
+          <table class=" table table-striped table-hover" id="issued_label-list">
+            <thead class="table-light">
+            <tr *ngIf="fromIssuedLabelComponent">
+              <th>Date(DD/MM/YY)</th>
+              <th>Part No.</th>
+              <th>Label Print Time(H-M-S)</th>
+            </tr></thead>        
+            <tbody>
+              <tr  *ngFor="let user of data | paginate: {id:'listing_pagination',
+         itemsPerPage: 10,
+         currentPage: page,
+         totalItems: totalRecords}">
+                
+                
+      
+                    <td *ngIf="fromIssuedLabelComponent">{{user.name.title}} {{user.name.first}}</td>
+                     <td *ngIf="fromIssuedLabelComponent">{{user.name.last}}</td>
+                     <td *ngIf="fromIssuedLabelComponent">{{user.name.title}}  {{user.name.first}}  {{user.name.last}}</td>
+      
+              </tr>
+            </tbody>
+          </table>
+      
+          <div>
+            <pagination-controls class="paginator-style" id="listing_pagination" maxsize="10" durationLinks="true" (pageChange)="page = $event">
+            </pagination-controls>
+          </div>
+        </div>
+
+    <!-- issued table end   -->
+
+        <!-- Missing Label part   -->
+
+
+          <div class="mb-3"fxLayout="column" fxLayoutAlign="space-evenly start" *ngIf="fromMissingLabelComponent">
+            <table class=" table table-striped table-hover" id="missing_label-list">
+              <thead class="table-light">
+                <tr *ngIf="fromMissingLabelComponent">
+                  <th>Part No.</th>          
+                </tr></thead>
+                <tbody>
+                  <tr  *ngFor="let user of data | paginate: {id:'listing_pagination',
+             itemsPerPage: 10,
+             currentPage: page,
+             totalItems: totalRecords}">          
+                        <td *ngIf="fromMissingLabelComponent">{{user.name.title}} {{user.name.first}}</td>        
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+
+
+
+          <!-- Missing Label Part  -->
+
+         <!-- Discard label Part -->
+         <!-- <div *ngFor="let user of data | paginate: {id:'listing_pagination',
+         itemsPerPage: 10,
+         currentPage: page,
+         totalItems: totalRecords}">
+           <h4 class="mat-subheading-1" id="discard_label-list" *ngIf="fromDiscardLabelCompponent">{{user.name.title}}  {{user.name.first}} {{user.name.last}}</h4>
+          </div> -->
+
+          <div class="mb-3"fxLayout="column" fxLayoutAlign="space-evenly start" *ngIf="fromDiscardLabelCompponent">
+            <table class=" table table-striped table-hover" id="discard_label-list">
+              <thead class="table-light">
+                <tr *ngIf="fromDiscardLabelCompponent">
+                  <th>Part No.</th>          
+                </tr></thead>
+                <tbody>
+                  <tr  *ngFor="let user of data | paginate: {id:'listing_pagination',
+             itemsPerPage: 10,
+             currentPage: page,
+             totalItems: totalRecords}">          
+                        <td *ngIf="fromDiscardLabelCompponent">{{user.name.title}} {{user.name.first}}</td>        
+                  </tr>
+                </tbody>
+              </table>
+          </div>     
+              
+          <!-- Discard label Part -->
+
+
+ </div>
+       
+
+
+

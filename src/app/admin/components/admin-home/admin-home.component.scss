@@ -1,0 +1,33 @@
+.example-card {
+    max-width: 400px;
+  }
+  .home-main-div {
+      
+    width: 65%;
+    height: 65%;
+     
+     position: absolute;
+     top:0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     
+   margin: auto;
+ 
+ }
+ .home-btn button {
+  float: right;
+  margin-right: 10%;
+}
+.btn-date-picker{
+  float: right;
+  padding: 1%;
+  width: 50%;
+  height: 30%;
+  margin-left: 2%;
+  margin-top: 4%;
+  }
+
+.total-production {
+  background-color: yellow;
+}

@@ -1,0 +1,216 @@
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+.main-data-log{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.page-bottom{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.text-center{
+    font-size: 65%;
+    text-align: center;
+    width: 30%;
+}
+.text-center-heading-row1{
+    width: 75%;
+    font-weight: 60%;
+    
+    text-align: center;
+    justify-content: center;
+    background-color: lightyellow;
+    margin-bottom: 0px !important;
+    border-spacing: 0px;
+}
+.mat-h4, .mat-subheading-1, .mat-typography h4{
+    margin-bottom: 0px !important;
+}
+.h3-botm{
+    margin-bottom: 0px !important;
+     font-weight: 600 !important;
+     
+}
+.h5-size{
+    margin-bottom: 0px !important;
+     font-weight: 600 !important;
+  
+}
+.h3-bot{
+    margin-bottom: 0px !important;
+  
+}
+.text-center-row2{
+    font-size: 65%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 30%;
+    background-color: rgba(211, 211, 211, 0.938);
+}
+
+.text-center-row3{
+    font-size: 65%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 30%;
+    background-color:white;
+}
+
+@mixin status-btn {
+    font-weight: bolder;
+    text-align: center;
+    width: 30%;
+}
+
+.success-status-btn {
+    @include status-btn;
+    color: white;
+    background-color: #4CAF50;
+}
+
+.failure-status-btn {
+    @include status-btn;
+    color: white;
+    background-color: #FF0000
+}
+
+.na-status-btn {
+    @include status-btn;
+    color: black;
+    background-color: yellow;
+}
+
+.text-center-box-yellow{
+    font-size: 35%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 30%;
+    height: 40%;
+    background-color:yellow;
+
+}
+.text-center-box-green{
+    font-size: 35%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 30%;
+    height: 40%;
+    background-color:lightgreen;
+
+}
+.text-center-box-red{
+    font-size: 35%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 30%;
+    height: 40%;
+    background-color:red;
+
+}
+.text-center-box-white{
+    font-size: 65%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 30%;
+    height: 40%;
+    background-color:whitesmoke;
+
+}
+.part-report-row1{
+    font-size: 65%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    margin-bottom: 5%;
+    width: 100%;
+    background-color: lightyellow;
+}
+.part-report-row2{
+    font-size: 65%;
+    font-weight: bolder;
+    color: black;
+    text-align: center;
+    width: 80%;
+    background-color:white;
+}
+.date-size{
+
+padding-top: 2px;
+    padding-bottom: 0% !important;
+    margin-bottom: 0% !important;
+
+}
+.mat-size-date-pick{
+
+    padding-bottom: 0% !important;
+    height: 50%;
+
+}
+.prev-op-ver{
+
+    width: 100%;
+
+    font-weight: 60%;
+    
+    text-align: center;
+    justify-content: center;
+    background-color: lightgreen;
+    margin-bottom: 0px !important;
+    border-spacing: 0px;
+}
+.part-list-report{
+    width: 100%;
+    font-weight: 60%;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    background-color: blue;
+    margin-bottom: 0px !important;
+    border-spacing: 0px;
+}
+.btn{
+    padding: 0;
+    font-size: 0.9rem;
+}
+.auto-refresh{
+width: 42% !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+    background-color: whitesmoke !important;
+   
+}
+
+.mat-form-field{
+    width: 76% !important;
+}
+.btn-date-picker{
+float: right;
+padding: 1%;
+width: 50%;
+height: 30%;
+margin-top: 3%;
+}
+
+.download-part {
+    width: 130% !important;
+}
+
+.back-to-main {
+    cursor: pointer;
+}
+
+.trace-filters {
+    justify-content: center;
+}
+
+.select-option {
+    width: 20%;
+    align-items: center;
+}

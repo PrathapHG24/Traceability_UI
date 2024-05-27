@@ -1,0 +1,32 @@
+
+
+<div fxLayout="column" class="main-div">
+    <div fxLayout="row" >
+        <div class="home-btn" >
+            <button type="button" class="btn btn-outline-primary" (click)="goBackToHome()">
+            Main Screen
+          </button>
+           </div>
+       </div>
+</div>
+       
+
+   <div  fxLayout="column" fxLayoutGap="15%" class="home-main-div ">
+     
+
+    <div fxLayout="row" fxLayoutGap="25%">
+        <mat-card fxFlex="80" fxLayoutAlign="center center" (click)="openDesiredPrintLabelComponent('printLabel')"  class="printLabelMenu-btn">
+            <h3 class="mat-subheading-2">Print Label</h3>
+        </mat-card>
+        <mat-card fxFlex="80" fxLayoutAlign="center center" (click)="openDesiredPrintLabelComponent('issuedLabel')"  class="printLabelMenu-btn">
+            <h3 class="mat-subheading-2" >Issued Label</h3>
+        </mat-card>
+        <mat-card fxFlex="80" fxLayoutAlign="center center" (click)="openDesiredPrintLabelComponent('missingLabel')" class="printLabelMenu-btn">
+            <h3 class="mat-subheading-2" >Missing Label</h3>
+        </mat-card>
+        <mat-card fxFlex="80" fxLayoutAlign="center center"  (click)="openDesiredPrintLabelComponent('discardLabel')" class="printLabelMenu-btn">
+            <h3 class="mat-subheading-2" >Discard Label</h3>
+        </mat-card>
+    </div>
+   </div>
+

@@ -1,0 +1,117 @@
+<div fxLayout="column" fxLayoutGap="2%" class="home-main-div">
+  <div class="home-btn">
+    <button type="button" class="btn btn-outline-primary m-2" (click)="goBackToHome()">
+    Main Menu
+  </button></div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5%" class="home-btn">
+        
+       <mat-card fxLayoutGap="2%" fxLayout="row">
+        <div fxLayout="column" fxLayoutGap="5%" fxFlex="100">
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+            <mat-card-title>Total Production</mat-card-title>
+          </div>
+
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="total-production">
+            <h1><strong>{{totalProduction}}</strong></h1>
+          </div>
+        </div>
+
+      </mat-card>
+
+    <div flexLayout="column"fxLayoutAlign="space-evenly center" >
+      <mat-card fxFlex="100">
+        <mat-card-title>Production Report Generate</mat-card-title>
+
+        <!-- <div >
+<br>
+<form  [formGroup] = "form">
+<mat-form-field appearance="fill">
+  <mat-label>Enter a date range</mat-label>
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate placeholder="Start date">
+    <input matEndDate placeholder="End date">
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>
+</form>
+    
+<button class="btn-date-picker btn btn-primary"(click)="onSubmit()">Submit</button>
+
+      </div> -->
+      <div class="date-size" fxLayout="row" fxLayoutGap="1px"  >
+        <form  [formGroup] = "form">
+         <mat-form-field  appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker" formGroupName="daterange">
+              <input matStartDate placeholder="Start date" formControlName="start">
+              <input matEndDate placeholder="End date" formControlName=    "end">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+         </mat-form-field>   
+       
+       
+
+      </form>
+      <button class="btn-date-picker btn btn-primary"(click)="onSubmit()">Submit</button>
+
+      </div>
+      </mat-card>
+    </div>
+
+    <div flexLayout="column" fxLayoutAlign="space-around center">
+      <mat-card fxFlex="100">
+        <mat-card-title>Part  Report Generate
+          </mat-card-title>
+             <br>
+          <div flexLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15%"  class="mb-3">
+            
+      <input type="text" id="disabledTextInput" class="form-control " placeholder="Part ID" [formControl]="partId">
+      
+      <button class="btn btn-primary download-part" (click)="downloadPartReport()">Submit</button>
+     
+    </div>
+      
+      </mat-card>
+
+      </div>
+   
+  </div>
+  <!-- <div fxLayout="row" fxLayoutAlign="space-around center" (click)="openDesiredAdminComponent('userManagement')">
+    <mat-card fxFlex="100" fxLayoutAlign="space-around center">
+      <mat-card-title>User Management</mat-card-title>
+    </mat-card>
+  </div> -->
+         <!-- fifth column -->
+         <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters">
+          <button class="btn-primary" (click)="manualRefresh()">Manual Refresh</button>
+          </div>
+          <!-- sixth column  -->
+          <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters">
+            <button class="btn-primary" (click)="export_part_report_excel()">Download Report</button>
+         </div>
+         <!-- sixth column  -->
+         <div  fxLayoutGap="5%" fxLayout="column" class="trace-filters select-option">
+            <mat-form-field appearance="fill">
+               <mat-select [(value)]="selectedval" (selectionChange)="changeClient($event.value)" >
+                 <mat-option  *ngFor="let option of values" [value]="option.value">{{ option.viewValue }} </mat-option>
+               </mat-select>
+             </mat-form-field>
+         </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <ag-grid-angular
+    style="width: 100%; height: 500px; "
+    class="ag-theme-alpine"
+    [rowData]="rowData | async "
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    (rowClicked)="onRowClicked($event)"
+    (gridReady)="onGridReady($event)">
+    </ag-grid-angular>
+  </div>
+</div>
+
+
+

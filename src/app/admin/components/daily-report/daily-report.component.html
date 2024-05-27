@@ -1,0 +1,68 @@
+<div fxLayout="column" fxFlex>
+  <div fxLayout="row" fxFlex fxLayoutAlign="center start" fxLayoutGap="10%" class="m-2">
+    <h1><strong>Traceability For Exhaust Lever Assembly Line-2(ISD/ISB)</strong></h1>
+    <div>
+      <button type="button" class="btn btn-outline-primary" (click)="goBackToHome()">
+        Main Screen
+      </button>
+    </div>
+  </div>
+  <div div fxLayout="column" fxLayoutAlign="end end" fxFlex class="delete-records">
+    <div fxLayout="row" fxLayoutAlign="space-between none" *ngIf="deleteFlag" class="alert alert-success msg" role="alert">
+      <p>{{deleteMsg}}</p>
+      <p class="close-msg" (click)="closeDiv()">x</p>
+    </div>
+    <button class="btn btn-primary delete-btn" (click)="deleteLine1()">Delete Old Records</button>
+    <p class="delete-txt">*Clicking on this will delete all the logged data except for a month's data counting from today</p>
+  </div>
+</div>
+
+<div fxLayout="column" fxLayoutGap="15px" class="home-main-div">
+    <div fxLayout="row" fxLayoutGap="25px" class="home-btn card-style">
+        <mat-card fxLayoutGap="2%" fxLayout="row" class="daily-report">
+            <div fxLayout="column" fxFlex="100">
+                <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+                  <h1><strong>Current Shift - {{machineData && machineData.currentShift == 1 ? '(A)' : machineData && machineData.currentShift == 2 ? '(B)' : machineData && machineData.currentShift == 3 ? '(C)' : '(NA)'}}</strong> </h1>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="25px" class="home-btn card-style">
+        <mat-card fxLayoutGap="2%" fxLayout="row" class="daily-report">
+            <div fxLayout="column" fxFlex="100">
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+                <mat-card-title>Total Production</mat-card-title>
+              </div>
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="total-production">
+                <h1 class="total-prod-color"><strong>{{machineData && machineData.totalProduction ? machineData.totalProduction : '0'}}</strong></h1>
+              </div>
+            </div>
+        </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutGap="25px" class="home-btn card-style" >
+        <mat-card fxLayoutGap="2%" fxLayout="row" class="daily-report">
+            <div fxLayout="column" fxFlex="100">
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+                <mat-card-title>OK Parts</mat-card-title>
+              </div>
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="ok-parts">
+                <h1 class="ok-parts-color"><strong>{{machineData && machineData.okParts ? machineData.okParts : '0'}}</strong></h1>
+              </div>
+            </div>
+          </mat-card>
+    </div>
+    <div fxLayout="row" fxLayoutGap="25px" class="home-btn card-style" >
+        <mat-card fxLayoutGap="2%" fxLayout="row" class="daily-report">
+            <div fxLayout="column" fxFlex="100">
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center none">
+                <mat-card-title>NOT OK Parts</mat-card-title>
+              </div>
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="not-ok-parts">
+                <h1 class="notok-parts-color"><strong>{{machineData && machineData.notOkParts ? machineData.notOkParts : '0'}}</strong></h1>
+              </div>
+            </div>
+          </mat-card> 
+    </div>
+    
+</div>
